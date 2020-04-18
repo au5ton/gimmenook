@@ -1,0 +1,35 @@
+{
+  "name": "@au5ton/gimmenook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "build": "./node_modules/typescript/bin/tsc -p .",
+    "watch": "nodemon --watch src/ --ext js,mjs,json,ts --exec 'clear; npm run build'",
+    "refresh": "rm -rf ./node_modules ./package-lock.json && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/au5ton/gimmenook.git"
+  },
+  "keywords": [],
+  "author": "Austin Jackson <austinjckson@gmail>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cougargrades/importer/issues"
+  },
+  "homepage": "https://github.com/au5ton/gimmenook#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.3",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/node": "^13.13.0",
+    "@types/node-fetch": "^2.5.6",
+    "chalk": "^4.0.0",
+    "commander": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0"
+  }
+}
