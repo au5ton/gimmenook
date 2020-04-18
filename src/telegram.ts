@@ -28,8 +28,8 @@ export class Telegram implements Provider {
     }
   }
 
-  async sendMessage(text: string) {
-    let res = await fetch(`https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.channelId}&text=${encodeURI(text)}`)
+  async sendMessage(text: string, parse_mode: "HTML" | "MarkdownV2" | "Markdown" = "HTML") {
+    let res = await fetch(`https://api.telegram.org/bot${this.token}/sendMessage?chat_id=${this.channelId}&text=${encodeURI(text)}&parse_mode=${parse_mode}`)
     return await res.json()
   }
 }

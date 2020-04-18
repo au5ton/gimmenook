@@ -2,6 +2,7 @@ import { info, error, success } from './prettyPrint'
 import { Telegram } from './telegram'
 import { Target } from './target'
 import { Provider } from './iprovider';
+import { InventoryReport } from './iinventoryreport';
 
 export interface AppArguments {
   telegram: Telegram
@@ -23,14 +24,24 @@ export function bindProviders(providers: Provider[]): AppArguments {
 }
 
 export class App {
-  private telegram: Telegram;
-  private target: Target;
-  constructor({ telegram, target }: AppArguments) {
-    this.telegram = telegram;
-    this.target = target;
+  private providers: Provider[];
+  constructor(providers: Provider[]) {
+    this.providers = providers;
   }
 
-  async start() {
-    this.telegram.sendMessage('Hello World!')
+  async start() {    
+    let telegram: Telegram = this.providers.filter(e => e instanceof Telegram)[0] as Telegram
+
+    let inventory = await Promise.all(this.providers.map(async e => {
+      if(e instanceof Target) return await e.checkInventory(77043)
+      return []
+    }))
+
+    inventory
+    .flat()
+    .filter(item => (item as InventoryReport).available)
+    .forEach(async item => {
+      telegram.sendMessage((item as InventoryReport).message)
+    })
   }
 }

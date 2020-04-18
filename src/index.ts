@@ -43,8 +43,10 @@ program
 
     info(`Starting gimmenook (${process.env.npm_package_version}) ...`)
     
-    let app = new App(bindProviders(providers))
-    app.start();
+    let app = new App(providers)
+    await app.start();
+    
+    info('Exitting...')
   })
   .parse(process.argv);
 
