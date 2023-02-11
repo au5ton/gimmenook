@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/au5ton/gimmenook#readme",
   "devDependencies": {
-    "nodemon": "^2.0.3",
+    "nodemon": "^2.0.20",
     "typescript": "^3.8.3"
   },
   "dependencies": {
